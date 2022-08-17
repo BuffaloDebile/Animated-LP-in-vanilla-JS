@@ -29,3 +29,15 @@ function typewriter(word, index) {
 setTimeout(() => {
   typewriter(text, 0);
 }, 300);
+
+// push down button
+
+heroPushLink.addEventListener('click', slideDown);
+
+function slideDown(e) {
+  e.preventDefault();
+  window.scrollTo({
+    top: document.querySelector(`${e.target.getAttribute('href')}`).offsetTop,
+    behavior: 'smooth',
+  });
+}
