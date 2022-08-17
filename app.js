@@ -41,3 +41,42 @@ function slideDown(e) {
     behavior: 'smooth',
   });
 }
+
+// scroll animation
+
+const generalAnimatedElements = [
+  ...document.querySelectorAll('h2'),
+  ...document.querySelectorAll('.section-subtitle'),
+];
+
+const discoverSectionSectionElements = [
+  document.querySelector('.text-discover-content h3'),
+  document.querySelector('.text-discover-content p'),
+  document.querySelector('.discover-link'),
+  document.querySelector('.discover-main-img'),
+];
+
+const slideInContent = [
+  ...document.querySelectorAll('.side-apparition-container'),
+];
+
+const animatedContents = [
+  ...generalAnimatedElements,
+  ...discoverSectionSectionElements,
+  ...slideInContent,
+];
+
+const intersectionObserver = new IntersectionObserver(handleIntersect, {
+  rootMargin: '-10%',
+});
+
+animatedContents.forEach((el) => intersectionObserver.observe(el));
+
+function handleIntersect(entries) {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('active');
+      intersectionObserver.unobserve(entry.target);
+    }
+  });
+}
