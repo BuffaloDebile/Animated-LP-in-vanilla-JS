@@ -197,11 +197,42 @@ h1 {
   position: relative;
 }
 
+h1::after {
+  content: '';
+  position: absolute;
+  display: block;
+  height: 90%;
+  width: 3px;
+  background: #ebebeb;
+  right: -10px;
+  top: -5px;
+  animation: carret 1s infinite;
+  transform-origin: bottom;
+}
+
+@keyframes carret {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .subtitle {
   color: #f1f1f1;
   font-weight: 200;
   font-size: clamp(16px, 2vw, 20px);
   margin-top: 10px;
+  opacity: 0;
+  transition: opacity 0.8s ease-out;
+}
+
+.subtitle.active {
+  opacity: 1;
 }
 
 .hero-push-link {
@@ -218,6 +249,12 @@ h1 {
   bottom: clamp(30px, 10vw, 75px);
   left: 50%;
   transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.8s ease-out;
+}
+
+.hero-push-link.active {
+  opacity: 1;
 }
 
 .hero-push-link img {
